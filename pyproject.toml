@@ -1,3 +1,26 @@
+[project]
+name = "grok-1"
+version = "0.0.0"
+description = "JAX example code for loading and running the Grok-1 open-weights model"
+requires-python = ">=3.9,<3.13"
+dependencies = [
+    "dm_haiku==0.0.12",
+    "jax[cuda12-pip]==0.4.25",
+    "numpy==1.26.4",
+    "sentencepiece==0.2.0",
+]
+
+# Hub CLI for the weight-download instructions. The example code does not import it.
+[dependency-groups]
+download = ["huggingface-hub"]
+
+[tool.uv]
+package = false
+exclude-newer = "7 days"
+find-links = ["https://storage.googleapis.com/jax-releases/jax_cuda_releases.html"]
+# CUDA 12 jaxlib wheels are published for Linux only.
+environments = ["sys_platform == 'linux'"]
+
 [tool.ruff]
 indent-width = 4
 line-length = 100
